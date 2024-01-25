@@ -1,3 +1,23 @@
+# Forked Repo Usage for Osmosis
+* Checkout osmosis branch
+```shell
+git checkout chain/osmosis
+```
+* Install libraries first
+```shell
+pip install -r requirements.txt
+```
+## Aggregate
+* Download proto files from github
+```shell
+python aggregate.py osmosis
+```
+## Compile
+* generate *_pb.py files
+```shell
+python compile.py
+```
+
 # Osmosis Protobuf
 This repository contains the whole osmosis protobuf files compiled for python and ready to use with grpc. Please use the according .proto file as documentation for each python file.
 
