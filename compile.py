@@ -4,12 +4,13 @@ import os
 import re
 import subprocess
 import sys
+
 parser = argparse.ArgumentParser(description="Aggregate all protobuf files")
 parser.add_argument(
     "-p",
     "--package_name",
     type=str,
-    default="cosmospy_protobuf",
+    default="osmosis_protobuf",
     help=
     "Name for the package to build. This will aggregate all files in the src/{package_name} folder",
 )
@@ -114,6 +115,15 @@ def rename_any_proto_imports(directory):
         for filename in files:
             with open(os.path.join(root, filename), "r+") as file:
                 lines = file.readlines()
+
+            if 'import "google/protobuf/any.proto";\n' in lines:
+                for line in lines:
+                    file.write(
+                        re.sub(
+                            r'^import "google/protobuf/any.proto";\n',
+                            'import "google/protobuf/cosmos_any.proto";\n',
+                            line,
+                        ))
 
             if 'import "google/protobuf/any.proto";\n' in lines:
                 for line in lines:

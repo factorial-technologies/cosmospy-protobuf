@@ -1,13 +1,32 @@
-# Cosmos Protobuf
+# Forked Repo Usage for Osmosis
+* Checkout osmosis branch
+```shell
+git checkout chain/osmosis
+```
+* Install libraries first
+```shell
+pip install -r requirements.txt
+```
+## Aggregate
+* Download proto files from github
+```shell
+python aggregate.py osmosis
+```
+## Compile
+* generate *_pb.py files
+```shell
+python compile.py
+```
 
-This repository compains the whole cosmos protobuf files compiled for python and ready to use with grpc. Please use the according .proto file as documentation for each python file.
+# Osmosis Protobuf
+This repository contains the whole osmosis protobuf files compiled for python and ready to use with grpc. Please use the according .proto file as documentation for each python file.
 
 ## Installation
 
 You can install this package directly from the repository by using:
 
 ```
-python -m pip install cosmospy-protobuf
+python -m pip install osmosis-protobuf
 ```
 
 ## Usage
@@ -15,10 +34,9 @@ python -m pip install cosmospy-protobuf
 The following code snippet will query the balances for the address `osmo15hzhcvgs2ljfng6unghvr5l32prwqdyq4aguxn`. The according query.proto file in the bank subdirectory contains the Request and the Response for this request. The details for the response are defined in `QueryAllBalancesResponse`. It contains the balances and pagination attribute which can be accessed as shown in the example below.
 
 ```python
-import grpc # using grpcio
-import cosmospy_protobuf.cosmos.bank.v1beta1.query_pb2_grpc as query_pb2_grpc # for gprcio
-#import cosmospy_protobuf.cosmos.bank.v1beta1.query_grpc as query_grpc # for gprclib
-import cosmospy_protobuf.cosmos.bank.v1beta1.query_pb2 as query_pb2
+import grpc
+import osmosis_protobuf.cosmos.bank.v1beta1.query_pb2_grpc as query_pb2_grpc
+import osmosis_protobuf.cosmos.bank.v1beta1.query_pb2 as query_pb2
 
 host = "osmosis.strange.love"
 port = "9090"
@@ -68,12 +86,5 @@ Note:
 ## Other Cosmos based coins
 
 Currently following coins are maintained by me:
-
-- Cosmos (this branch)
-- Evmos (branch: `chain/evmos`, package name: `evmos-protobuf`)
-- Osmosis (branch: `chain/osmosis`, package name: `osmosis-protobuf`)
-- Stargaze (branch: `chain/stargaze`, package name: `stargaze-protobuf`)
-
-Maintained by external contributors:
-
-- Sentinel (branch: `chain/sentinel`, package name: `sentinel-protobuf`)
+* Cosmos (branch: ``main``)
+* Osmosis (this branch)
